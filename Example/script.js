@@ -45,9 +45,12 @@ answer1.setValue(survey_id + "-electric");
 answer2.setValue(survey_id + "-gas");
 answer3.setValue(survey_id + "-Nomotorcycle");
 // Getting the appropiate chapter, question and answers and randomizing the question.
-var c = fSUR.getChapters()[0];
-var q = c.getQuestions()[0];
+var c_motorcycle = fSUR.getChapters()[0];
+var q = c_motorcycle.getQuestions()[0];
 var answers = [answer1, answer2, answer3];
 q.setAnswers(answers);
-c.setQuestions(new Array(q));
-fSUR.setChapters(new Array(c));
+c_motorcycle.setQuestions(new Array(q));
+// Getting the demographics chapter
+var c_demo = fSUR.getChapters()[1];
+var chapters = [c_motorcycle, c_demo];
+fSUR.setChapters(chapters);
