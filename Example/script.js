@@ -57,10 +57,28 @@ fSUR.setChapters(chapters);
 
 /* this is a test */
 
-var var_gasp = ["7,000", "8,000", "9,000"]
-var_ecash= ["500,000", "750,000", "1,000,000"] 
-var_emont = ["500,000", "750,000", "1,000,000"] 
-var_efuel = ["4,000", "5,000", "6,000", "7,000","8,000"]
-var_emaxi = ["40km", "60km", "80km", "100km"]
-var_echar = ["2", "3", "4", "5"]
-var_espee = ["60kph", "70kph", "80kph", "90kph","2100kph"]
+var var_gasp = ["7,000", "8,000", "9,000"];
+var var_ecash = ["500,000", "750,000", "1,000,000"];
+var var_emont = ["500,000", "750,000", "1,000,000"];
+var var_efuel = ["4,000", "5,000", "6,000", "7,000","8,000"];
+var var_emaxi = ["40km", "60km", "80km", "100km"];
+var var_echar = ["2", "3", "4", "5"];
+var var_espee = ["60kph", "70kph", "80kph", "90kph","2100kph"];
+
+function constructAnswerArray(answerTextArray, valuesArray){
+    var answers = [];
+    for (var i = 0; i < answerTextArray.length; i++) {
+        answers[i] = new fSON.answer();
+        answers[i].setAnswerText(answerTextArray[i]);
+        answers[i].setValue(valuesArray[i]);
+    };
+    return answers;
+}
+function getRandomNoRepeat(array){
+    var r_index = Math.floor((Math.random() * array.length) + 0);
+    if(r_index.indexOf(alreadyUsedRandomNumbers)){
+        r_index = getRandomNoRepeat(array);
+    }
+    // After receiving r_index, add it to alreadyUsedRandomNumbers for it not to repeat.
+    return r_index;
+}
