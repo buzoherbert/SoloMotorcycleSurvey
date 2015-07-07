@@ -2,40 +2,156 @@
     "FlocktrackerProject": {
         "FlocktrackerProjectVersion": "0.1",
         "SurveyProject": {
-            "TableID": "1utFXJf6GNqxpb1T0R6VxzQoYOH4RNjDW4eOhCiSI",
+            "TableID": "1Zyjoe0Dx8oSrnDruKUtzzKHJUXKINn0Qhr5twQb6",
             "Survey": {
                 "flockSONversion": 0.1,
                 "Title": "Survey",
-                "FlockScript": "/*\n     This is a test, repeat, this is a test\n*/\nvar possible_answers = [\n        {\"SurveyNumber\": \"1\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 1,000,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"2\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down\\t500,000\\nmonthly payment (3 years)\\t500,000\\nFuel price (rupiah per liter and liter equivalent)\\t6,000\\nMaximum range on single charge (km)\\t80\\nHow long to charge (hours)\\t4\\nMax speed (km per hour)\\t100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"3\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 40\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"4\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 2\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"5\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 60\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         }\n        ];\n//Randomize the possible options\nvar answer1 = new fSON.answer();\nvar answer2 = new fSON.answer();\nvar answer3 = new fSON.answer();\nvar r_index = Math.floor((Math.random() * possible_answers.length) + 0);\nanswer1.setAnswerText(possible_answers[r_index][\"electric\"]);\nanswer2.setAnswerText(possible_answers[r_index][\"gas\"]);\nanswer3.setAnswerText(possible_answers[r_index][\"Nomotorcycle\"]);\nvar survey_id = possible_answers[r_index][\"SurveyNumber\"];\nanswer1.setValue(survey_id + \"-electric\");\nanswer2.setValue(survey_id + \"-gas\");\nanswer3.setValue(survey_id + \"-Nomotorcycle\");\n// Getting the appropiate chapter, question and answers and randomizing the question.\nvar c_motorcycle = fSUR.getChapters()[0];\nvar q = c_motorcycle.getQuestions()[0];\nvar answers = [answer1, answer2, answer3];\nq.setAnswers(answers);\nc_motorcycle.setQuestions(new Array(q));\n// Getting the demographics chapter\nvar c_demo = fSUR.getChapters()[1];\nvar chapters = [c_motorcycle, c_demo];\nfSUR.setChapters(chapters);",
+                "FlockScript": "/*\n     This is a test, repeat, this is a test\n*/\nvar possible_answers = [\n        {\"SurveyNumber\": \"1\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 1,000,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"2\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down\\t500,000\\nmonthly payment (3 years)\\t500,000\\nFuel price (rupiah per liter and liter equivalent)\\t6,000\\nMaximum range on single charge (km)\\t80\\nHow long to charge (hours)\\t4\\nMax speed (km per hour)\\t100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"3\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 40\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"4\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 2\\nMax speed (km per hour)= 100\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         },\n         \n         {\"SurveyNumber\": \"5\", \n         \"gas\": \"Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\nFuel price (rupiah per liter equivalent)= NA\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100\",\n         \"electric\": \"Electric Motorcycle\\nCash down= 500,000\\nmonthly payment (3 years)= 500,000\\nFuel price (rupiah per liter and liter equivalent)= 8,000\\nMaximum range on single charge (km)= 80\\nHow long to charge (hours)= 4\\nMax speed (km per hour)= 60\",\n         \"Nomotorcycle\": \"No motorcycle\"\n         }\n        ];\n//Randomize the possible options\nvar answer1 = new fSON.answer();\nvar answer2 = new fSON.answer();\nvar answer3 = new fSON.answer();\nvar r_index = Math.floor((Math.random() * possible_answers.length) + 0);\nanswer1.setAnswerText(possible_answers[r_index][\"electric\"]);\nanswer2.setAnswerText(possible_answers[r_index][\"gas\"]);\nanswer3.setAnswerText(possible_answers[r_index][\"Nomotorcycle\"]);\nvar survey_id = possible_answers[r_index][\"SurveyNumber\"];\nanswer1.setValue(survey_id + \"-electric\");\nanswer2.setValue(survey_id + \"-gas\");\nanswer3.setValue(survey_id + \"-Nomotorcycle\");\n// Getting the appropiate chapter, question and answers and randomizing the question.\nvar c_motorcycle = fSUR.getChapters()[0];\nvar q = c_motorcycle.getQuestions()[0];\nvar answers = [answer1, answer2, answer3];\nq.setAnswers(answers);\nc_motorcycle.setQuestions(new Array(q));\n// Getting the demographics chapter\nvar c_demo = fSUR.getChapters()[1];\nvar chapters = [c_motorcycle, c_demo];\nfSUR.setChapters(chapters);\n\n/* this is a test */\n\nvar var_gasp = [\"7,000\", \"8,000\", \"9,000\"]\nvar_ecash= [\"500,000\", \"750,000\", \"1,000,000\"] \nvar_emont = [\"500,000\", \"750,000\", \"1,000,000\"] \nvar_efuel = [\"4,000\", \"5,000\", \"6,000\", \"7,000\",\"8,000\"]\nvar_emaxi = [\"40km\", \"60km\", \"80km\", \"100km\"]\nvar_echar = [\"2\", \"3\", \"4\", \"5\"]\nvar_espee = [\"60kph\", \"70kph\", \"80kph\", \"90kph\",\"2100kph\"]",
                 "Chapters": [
                     {
                         "Chapter": {
-                            "Title": "First Chapter",
+                            "Title": "Project",
+                            "Questions": [
+                                {
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "description",
+                                        "Text": "Imagine that it is a couple years in the future and you are considering purchasing a new motorcycle.\\n If you currently own a motorcycle, imagine that it no longer works.\\n On the next screens you will be shown information about the performance and price of a conventional gas-powered motorcycle and a similar performance electric motorcycle.\\n Fuel and electricity prices may be higher or lower than in the present. The electric motorcycles are charged at home, work, or parking facilities. For each alternative, you have the option to choose the gas-powered motorcycle, the electric powered one, or no motorcycle.\\n If you have any questions, please ask the person conducting the interview.",
+                                        "JumpID": null
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "Chapter": {
+                            "Title": "Moto survey",
                             "Questions": [
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION",
+                                        "ID": "MOTORCYCLE_OPTION1",
                                         "Text": "Choose between these two motorcycle options",
                                         "JumpID": null,
                                         "Other": false,
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "A",
-                                                    "Value": "A"
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "B",
-                                                    "Value": "B"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "C",
-                                                    "Value": "C"
+                                                    "Text": "No Motorcycle"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "MOTORCYCLE_OPTION2",
+                                        "Text": "Choose between these two motorcycle options",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No Motorcycle"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "MOTORCYCLE_OPTION3",
+                                        "Text": "Choose between these two motorcycle options",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No Motorcycle"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "MOTORCYCLE_OPTION4",
+                                        "Text": "Choose between these two motorcycle options",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No Motorcycle"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "MOTORCYCLE_OPTION5",
+                                        "Text": "Choose between these two motorcycle options",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No Motorcycle"
                                                 }
                                             }
                                         ]
@@ -52,7 +168,7 @@
                                     "Question": {
                                         "Kind": "ON",
                                         "ID": "q0",
-                                        "Text": "age",
+                                        "Text": "Age",
                                         "JumpID": null
                                     }
                                 },
@@ -131,12 +247,12 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Yes (Not a smartphone)"
+                                                    "Text": "Yes (a smartphone)"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Yes (a smartphone)"
+                                                    "Text": "Yes (not a smartphone)"
                                                 }
                                             },
                                             {
@@ -153,7 +269,7 @@
                                         "ID": "q5",
                                         "Text": "How do you usually get around the city?",
                                         "JumpID": null,
-                                        "Other": false,
+                                        "Other": true,
                                         "Answers": [
                                             {
                                                 "Answer": {
@@ -189,7 +305,7 @@
                                         "ID": "q6",
                                         "Text": "Other ways you get around the city?",
                                         "JumpID": null,
-                                        "Other": false,
+                                        "Other": true,
                                         "Answers": [
                                             {
                                                 "Answer": {
@@ -300,6 +416,53 @@
                                             {
                                                 "Answer": {
                                                     "Text": "Sometimes"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "q11",
+                                        "Text": "Have you ever ridden an electric motorcycle?",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Yes"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "q12",
+                                        "Text": "Do you think electric motorcycles are good quality?",
+                                        "JumpID": null,
+                                        "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "Yes"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No"
+                                                }
+                                            },
+                                            {
+                                                "Answer": {
+                                                    "Text": "No opinion"
                                                 }
                                             }
                                         ]
