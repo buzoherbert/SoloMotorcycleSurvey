@@ -97,10 +97,12 @@ for (var i = 0; i < questions.length; i++) {
     answers[i] = questions[i].getAnswers();
     for (var j = 0; j < answers[i].length; j++) {
         var aText = answers[i][j].getAnswerText();
-        atext = replaceText(aText, answerRandomSets[i]);
+        aText = replaceText(aText, answerRandomSets[i]);
         var valueText = answers[i][j].getValue();
         valueText = constructAnswerValue(valueText, answerRandomSets[i]);
-        answers[i][j].setAnswerText(atext);
+        answers[i][j].setAnswerText(aText);
         answers[i][j].setValue(valueText);
+|       console.log(aText);
+        console.log(valueText);
     };
 };
