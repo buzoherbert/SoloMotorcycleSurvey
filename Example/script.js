@@ -44,10 +44,14 @@ function constructAnswerValue(text, valueSet){
     for (property in valueSet) {
         if (valueSet.hasOwnProperty(property)) {
             var valueAndRandomSelection = property.concat("-", valueSet[property]);
-            randomValues.concat("_", valueAndRandomSelection);
+            if (randomValues == ""){
+                randomValues = valueAndRandomSelection;
+            } else {
+                randomValues = randomValues.concat("_", valueAndRandomSelection);
+            }
         }
     }
-    text = randomValues.concat("-", text);
+    text = randomValues.concat("_", text);
     return text;
 }
 
@@ -68,14 +72,12 @@ function getRandomSet(){
 }
 
 function isItAlreadyChosen(set){
-    console.log(answerRandomSets.length);
     if(answerRandomSets.length == 0){
         return false;
     }
     for (var i = 0; i < answerRandomSets.length; i++) {
         for (property in set) {
             if (set.hasOwnProperty(property)) {
-                console.log(set[property] + answerRandomSets[i][property]);
                 if(!(set[property] == answerRandomSets[i][property])){
                     break;
                 }
