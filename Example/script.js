@@ -57,20 +57,42 @@ fSUR.setChapters(chapters);
 
 /* this is a test */
 
-var gasp_options = ["7,000", "8,000", "9,000"];
-var ecash_options = ["500,000", "750,000", "1,000,000"];
-var emont_options = ["500,000", "750,000", "1,000,000"];
-var efuel_options = ["4,000", "5,000", "6,000", "7,000","8,000"];
-var emaxi_options = ["40km", "60km", "80km", "100km"];
-var echar_options = ["2", "3", "4", "5"];
-var espee_options = ["60kph", "70kph", "80kph", "90kph","2100kph"];
+var variables = {
+    ["name": "gasp";,
+     "key": "gasp",
+     "options": ["7,000", "8,000", "9,000"]
+    ],
+    ["name": "eemont";,
+     "key": "eemont",
+     "options": ["500,000", "750,000", "1,000,000"]
+    ],
+    ["name": "emont";,
+     "key": "emont",
+     "options": ["500,000", "750,000", "1,000,000"]
+    ],
+    ["name": "efuel";,
+     "key": "efuel",
+     "options": ["4,000", "5,000", "6,000", "7,000","8,000"]
+    ],
+    ["name": "emaxi";,
+     "key": "emaxi",
+     "options": ["40km", "60km", "80km", "100km"]
+    ],
+    ["name": "echar";,
+     "key": "echar",
+     "options": ["2", "3", "4", "5"]
+    ],
+    ["name": "espee";,
+     "key": "espee",
+     "options": ["60kph", "70kph", "80kph", "90kph","210kph"]
+    ]
+}
 
 var chapter = fSUR.getChapters()[1];
 var questions = chapter.getQuestions();
 var answerSets = [];
 for (var i = 0; i < questions.length; i++) {
-    var answerSet = getRandomSet();
-    questions[i].getAnswers();
+    var answerSets[i] = getRandomSet();
 };
 
 function getRandomSet(){
@@ -96,8 +118,8 @@ function isItAlreadyChosen(set){
                     break;
                 }
             }
-            return true;
         }
+        return true;
     };
     return false;
 }
