@@ -1,10 +1,9 @@
-var fSUR = FTproject.getSurveyProject().getSurvey();
 var variables = {
     "var_gasp":
     {"upload_name": "gasp",
      "options": ["7,000", "8,000", "9,000"]
     },
-    "var_eemont":
+    "var_ecash":
     {"upload_name": "eemont",
      "options": ["500,000", "750,000", "1,000,000"]
     },
@@ -20,8 +19,8 @@ var variables = {
     {"upload_name": "emaxi",
      "options": ["40km", "60km", "80km", "100km"]
     },
-    "var_ecash":
-    {"upload_name": "ecash",
+    "var_echar":
+    {"upload_name": "echar",
      "options": ["2", "3", "4", "5"]
     },
     "var_espee":

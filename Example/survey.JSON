@@ -6,7 +6,7 @@
             "Survey": {
                 "flockSONversion": 0.1,
                 "Title": "Survey",
-                "FlockScript": "var fSUR = FTproject.getSurveyProject().getSurvey();\nvar variables = {\n    \"var_gasp\":\n    {\"upload_name\": \"gasp\",\n     \"options\": [\"7,000\", \"8,000\", \"9,000\"]\n    },\n    \"var_eemont\":\n    {\"upload_name\": \"eemont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_emont\":\n    {\"upload_name\": \"emont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_efuel\":\n    {\"upload_name\": \"efuel\",\n     \"options\": [\"4,000\", \"5,000\", \"6,000\", \"7,000\",\"8,000\"]\n    },\n    \"var_emaxi\":\n    {\"upload_name\": \"emaxi\",\n     \"options\": [\"40km\", \"60km\", \"80km\", \"100km\"]\n    },\n    \"var_ecash\":\n    {\"upload_name\": \"ecash\",\n     \"options\": [\"2\", \"3\", \"4\", \"5\"]\n    },\n    \"var_espee\":\n    {\"upload_name\": \"espee\",\n     \"options\": [\"60kph\", \"70kph\", \"80kph\", \"90kph\",\"210kph\"]\n    }\n};\n\nfunction replaceText(text, changesSet){\n    for (property in changesSet) {\n        if (changesSet.hasOwnProperty(property)) {\n            text = text.replace(property, changesSet[property]);\n        }\n    }\n    return text;\n}\n\nfunction constructAnswerValue(text, valueSet){\n    var randomValues = \"\";\n    for (property in valueSet) {\n        if (valueSet.hasOwnProperty(property)) {\n            var valueAndRandomSelection = variables[property][\"upload_name\"].concat(\"-\", valueSet[property]);\n            if (randomValues == \"\"){\n                randomValues = valueAndRandomSelection;\n            } else {\n                randomValues = randomValues.concat(\"_\", valueAndRandomSelection);\n            }\n        }\n    }\n    text = randomValues.concat(\"_\", text);\n    return text;\n}\n\nfunction getRandomSet(){\n    var answerSet = {};\n    for (property in variables) {\n        if (variables.hasOwnProperty(property)) {\n            var options = variables[property][\"options\"];\n            var alength = Math.floor(Math.random() * options.length);\n            answerSet[property] = options[alength];\n        }\n    }\n    if(isItAlreadyChosen(answerSet)){\n        getRandomSet();\n    }\n    return answerSet;\n}\n\nfunction isItAlreadyChosen(set){\n    if(answerRandomSets.length == 0){\n        return false;\n    }\n    for (var i = 0; i < answerRandomSets.length; i++) {\n        for (property in set) {\n            if (set.hasOwnProperty(property)) {\n                if(!(set[property] == answerRandomSets[i][property])){\n                    break;\n                }\n            }\n        }\n        return false;\n    };\n    return true;\n}\n\nvar chapter = fSUR.getChapters()[1];\nvar questions = chapter.getQuestions();\nvar answers = [];\nvar answerRandomSets = [];\nfor (var i = 0; i < questions.length; i++) {\n    answerRandomSets[i] = getRandomSet();\n    answers[i] = questions[i].getAnswers();\n    for (var j = 0; j < answers[i].length; j++) {\n        var aText = answers[i][j].getAnswerText();\n        aText = replaceText(aText, answerRandomSets[i]);\n        var valueText = answers[i][j].getValue();\n        valueText = constructAnswerValue(valueText, answerRandomSets[i]);\n        answers[i][j].setAnswerText(aText);\n        answers[i][j].setValue(valueText);\n    };\n};",
+                "FlockScript": "var variables = {\n    \"var_gasp\":\n    {\"upload_name\": \"gasp\",\n     \"options\": [\"7,000\", \"8,000\", \"9,000\"]\n    },\n    \"var_ecash\":\n    {\"upload_name\": \"eemont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_emont\":\n    {\"upload_name\": \"emont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_efuel\":\n    {\"upload_name\": \"efuel\",\n     \"options\": [\"4,000\", \"5,000\", \"6,000\", \"7,000\",\"8,000\"]\n    },\n    \"var_emaxi\":\n    {\"upload_name\": \"emaxi\",\n     \"options\": [\"40km\", \"60km\", \"80km\", \"100km\"]\n    },\n    \"var_echar\":\n    {\"upload_name\": \"echar\",\n     \"options\": [\"2\", \"3\", \"4\", \"5\"]\n    },\n    \"var_espee\":\n    {\"upload_name\": \"espee\",\n     \"options\": [\"60kph\", \"70kph\", \"80kph\", \"90kph\",\"210kph\"]\n    }\n};\n\nfunction replaceText(text, changesSet){\n    for (property in changesSet) {\n        if (changesSet.hasOwnProperty(property)) {\n            text = text.replace(property, changesSet[property]);\n        }\n    }\n    return text;\n}\n\nfunction constructAnswerValue(text, valueSet){\n    var randomValues = \"\";\n    for (property in valueSet) {\n        if (valueSet.hasOwnProperty(property)) {\n            var valueAndRandomSelection = variables[property][\"upload_name\"].concat(\"-\", valueSet[property]);\n            if (randomValues == \"\"){\n                randomValues = valueAndRandomSelection;\n            } else {\n                randomValues = randomValues.concat(\"_\", valueAndRandomSelection);\n            }\n        }\n    }\n    text = randomValues.concat(\"_\", text);\n    return text;\n}\n\nfunction getRandomSet(){\n    var answerSet = {};\n    for (property in variables) {\n        if (variables.hasOwnProperty(property)) {\n            var options = variables[property][\"options\"];\n            var alength = Math.floor(Math.random() * options.length);\n            answerSet[property] = options[alength];\n        }\n    }\n    if(isItAlreadyChosen(answerSet)){\n        getRandomSet();\n    }\n    return answerSet;\n}\n\nfunction isItAlreadyChosen(set){\n    if(answerRandomSets.length == 0){\n        return false;\n    }\n    for (var i = 0; i < answerRandomSets.length; i++) {\n        for (property in set) {\n            if (set.hasOwnProperty(property)) {\n                if(!(set[property] == answerRandomSets[i][property])){\n                    break;\n                }\n            }\n        }\n        return false;\n    };\n    return true;\n}\n\nvar chapter = fSUR.getChapters()[1];\nvar questions = chapter.getQuestions();\nvar answers = [];\nvar answerRandomSets = [];\nfor (var i = 0; i < questions.length; i++) {\n    answerRandomSets[i] = getRandomSet();\n    answers[i] = questions[i].getAnswers();\n    for (var j = 0; j < answers[i].length; j++) {\n        var aText = answers[i][j].getAnswerText();\n        aText = replaceText(aText, answerRandomSets[i]);\n        var valueText = answers[i][j].getValue();\n        valueText = constructAnswerValue(valueText, answerRandomSets[i]);\n        answers[i][j].setAnswerText(aText);\n        answers[i][j].setValue(valueText);\n    };\n};",
                 "Chapters": [
                     {
                         "Chapter": {
@@ -37,13 +37,13 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
@@ -66,13 +66,13 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
@@ -95,13 +95,13 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
@@ -124,13 +124,13 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
@@ -153,13 +153,13 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
