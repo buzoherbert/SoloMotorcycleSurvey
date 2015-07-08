@@ -58,35 +58,35 @@ fSUR.setChapters(chapters);
 /* this is a test */
 
 var variables = {
-    ["name": "gasp";,
-     "key": "gasp",
+    "gasp":
+    {"name": "gasp",
      "options": ["7,000", "8,000", "9,000"]
-    ],
-    ["name": "eemont";,
-     "key": "eemont",
+    },
+    "eemont":
+    {"name": "eemont",
      "options": ["500,000", "750,000", "1,000,000"]
-    ],
-    ["name": "emont";,
-     "key": "emont",
+    },
+    "emont":
+    {"name": "emont",
      "options": ["500,000", "750,000", "1,000,000"]
-    ],
-    ["name": "efuel";,
-     "key": "efuel",
+    },
+    "efuel":
+    {"name": "efuel",
      "options": ["4,000", "5,000", "6,000", "7,000","8,000"]
-    ],
-    ["name": "emaxi";,
-     "key": "emaxi",
+    },
+    "emaxi":
+    {"name": "emaxi",
      "options": ["40km", "60km", "80km", "100km"]
-    ],
-    ["name": "echar";,
-     "key": "echar",
+    },
+    "echar":
+    {"name": "echar",
      "options": ["2", "3", "4", "5"]
-    ],
-    ["name": "espee";,
-     "key": "espee",
+    },
+    "espee":
+    {"name": "espee",
      "options": ["60kph", "70kph", "80kph", "90kph","210kph"]
-    ]
-}
+    }
+};
 
 var chapter = fSUR.getChapters()[1];
 var questions = chapter.getQuestions();
@@ -97,13 +97,13 @@ for (var i = 0; i < questions.length; i++) {
 
 function getRandomSet(){
     var answerSet;
-    answerSet.gasp = Math.floor(Math.random() * gasp_options.length);
-    answerSet.ecash = Math.floor(Math.random() * ecash_options.length);
-    answerSet.emont = Math.floor(Math.random() * emont_options.length);
-    answerSet.efuel = Math.floor(Math.random() * efuel_options.length);
-    answerSet.emaxi = Math.floor(Math.random() * emaxi_options.length);
-    answerSet.echar = Math.floor(Math.random() * echar_options.length);
-    answerSet.espee = Math.floor(Math.random() * espee_options.length);
+    for (var property in variables) {
+        if (variables.hasOwnProperty(property)) {
+            var options = variables[property]["options"];
+            var alength = Math.floor((Math.random() * options.length);
+            answerSet[property].key = options[alength];
+        }
+    }
     if(isItAlreadyChosen(answerSet)){
         getRandomSet();
     }
@@ -114,7 +114,7 @@ function isItAlreadyChosen(set){
     for (var i = 0; i < answerSets.length; i++) {
         for (var property in set) {
             if (set.hasOwnProperty(property)) {
-                if(!(set.property == answerSets[i].property)){
+                if(!(set[property] == answerSets[i][property])){
                     break;
                 }
             }
