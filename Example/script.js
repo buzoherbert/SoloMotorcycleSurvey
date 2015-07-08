@@ -57,13 +57,50 @@ fSUR.setChapters(chapters);
 
 /* this is a test */
 
-var var_gasp = ["7,000", "8,000", "9,000"];
-var var_ecash = ["500,000", "750,000", "1,000,000"];
-var var_emont = ["500,000", "750,000", "1,000,000"];
-var var_efuel = ["4,000", "5,000", "6,000", "7,000","8,000"];
-var var_emaxi = ["40km", "60km", "80km", "100km"];
-var var_echar = ["2", "3", "4", "5"];
-var var_espee = ["60kph", "70kph", "80kph", "90kph","2100kph"];
+var gasp_options = ["7,000", "8,000", "9,000"];
+var ecash_options = ["500,000", "750,000", "1,000,000"];
+var emont_options = ["500,000", "750,000", "1,000,000"];
+var efuel_options = ["4,000", "5,000", "6,000", "7,000","8,000"];
+var emaxi_options = ["40km", "60km", "80km", "100km"];
+var echar_options = ["2", "3", "4", "5"];
+var espee_options = ["60kph", "70kph", "80kph", "90kph","2100kph"];
+
+var chapter = fSUR.getChapters()[1];
+var questions = chapter.getQuestions();
+var answerSets = [];
+for (var i = 0; i < questions.length; i++) {
+    var answerSet = getRandomSet();
+    questions[i].getAnswers();
+};
+
+function getRandomSet(){
+    var answerSet;
+    answerSet.gasp = Math.floor(Math.random() * gasp_options.length);
+    answerSet.ecash = Math.floor(Math.random() * ecash_options.length);
+    answerSet.emont = Math.floor(Math.random() * emont_options.length);
+    answerSet.efuel = Math.floor(Math.random() * efuel_options.length);
+    answerSet.emaxi = Math.floor(Math.random() * emaxi_options.length);
+    answerSet.echar = Math.floor(Math.random() * echar_options.length);
+    answerSet.espee = Math.floor(Math.random() * espee_options.length);
+    if(isItAlreadyChosen(answerSet)){
+        getRandomSet();
+    }
+    return answerSet
+}
+
+function isItAlreadyChosen(set){
+    for (var i = 0; i < answerSets.length; i++) {
+        if(
+        ((answerSets[i].gasp == set.gasp) && (answerSets[i].ecash == set.ecash)
+        (answerSets[i].emont == set.emont) && (answerSets[i].efuel == set.efuel)
+        (answerSets[i].emaxi == set.emaxi) && (answerSets[i].echar == set.echar)) &&
+        (answerSets[i].espee == set.espee)
+        ){
+            return true
+        }
+    };
+    return false
+}
 
 function constructAnswerArray(answerTextArray, valuesArray){
     var answers = [];
@@ -74,7 +111,7 @@ function constructAnswerArray(answerTextArray, valuesArray){
     };
     return answers;
 }
-function getRandomNoRepeat(array){
+function getRandomNoRepeat(array, alreadyUsedRandomNumbers){
     var r_index = Math.floor((Math.random() * array.length) + 0);
     if(r_index.indexOf(alreadyUsedRandomNumbers)){
         r_index = getRandomNoRepeat(array);
