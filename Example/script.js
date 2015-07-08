@@ -90,10 +90,28 @@ var variables = {
 
 var chapter = fSUR.getChapters()[1];
 var questions = chapter.getQuestions();
-var answerSets = [];
+var answerRandomSets = [];
 for (var i = 0; i < questions.length; i++) {
-    var answerSets[i] = getRandomSet();
+    var answerRandomSets[i] = getRandomSet();
+    var asnswers = questions[i].getAnswers();
+    for (var j = 0; j < answers.length; j++) {
+        var aText = answers[j].getAnswerText();
+        atext = replaceText(aText, answerRandomSets[i]);
+        answers[j].setAnswerText(atext);
+        var valueText
+    };
 };
+
+function replaceText(text, changesSet){
+    for (var property in changesSet) {
+        if (changesSet.hasOwnProperty(property)) {
+            text = text.replace(property, changesSet[property]);
+        }
+    }
+    return text;
+}
+
+
 
 function getRandomSet(){
     var answerSet;
@@ -101,7 +119,7 @@ function getRandomSet(){
         if (variables.hasOwnProperty(property)) {
             var options = variables[property]["options"];
             var alength = Math.floor((Math.random() * options.length);
-            answerSet[property].key = options[alength];
+            answerSet[property] = options[alength];
         }
     }
     if(isItAlreadyChosen(answerSet)){
