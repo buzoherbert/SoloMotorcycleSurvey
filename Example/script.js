@@ -1,31 +1,31 @@
 var fSUR = FTproject.getSurveyProject().getSurvey();
 var variables = {
-    "gasp":
-    {"name": "gasp",
+    "var_gasp":
+    {"upload_name": "gasp",
      "options": ["7,000", "8,000", "9,000"]
     },
-    "eemont":
-    {"name": "eemont",
+    "var_eemont":
+    {"upload_name": "eemont",
      "options": ["500,000", "750,000", "1,000,000"]
     },
-    "emont":
-    {"name": "emont",
+    "var_emont":
+    {"upload_name": "emont",
      "options": ["500,000", "750,000", "1,000,000"]
     },
-    "efuel":
-    {"name": "efuel",
+    "var_efuel":
+    {"upload_name": "efuel",
      "options": ["4,000", "5,000", "6,000", "7,000","8,000"]
     },
-    "emaxi":
-    {"name": "emaxi",
+    "var_emaxi":
+    {"upload_name": "emaxi",
      "options": ["40km", "60km", "80km", "100km"]
     },
-    "echar":
-    {"name": "echar",
+    "var_ecash":
+    {"upload_name": "ecash",
      "options": ["2", "3", "4", "5"]
     },
-    "espee":
-    {"name": "espee",
+    "var_espee":
+    {"upload_name": "espee",
      "options": ["60kph", "70kph", "80kph", "90kph","210kph"]
     }
 };
@@ -43,7 +43,7 @@ function constructAnswerValue(text, valueSet){
     var randomValues = "";
     for (property in valueSet) {
         if (valueSet.hasOwnProperty(property)) {
-            var valueAndRandomSelection = property.concat("-", valueSet[property]);
+            var valueAndRandomSelection = variables[property]["upload_name"].concat("-", valueSet[property]);
             if (randomValues == ""){
                 randomValues = valueAndRandomSelection;
             } else {
@@ -61,8 +61,7 @@ function getRandomSet(){
         if (variables.hasOwnProperty(property)) {
             var options = variables[property]["options"];
             var alength = Math.floor(Math.random() * options.length);
-            var name = variables[property]["name"];
-            answerSet[name] = options[alength];
+            answerSet[property] = options[alength];
         }
     }
     if(isItAlreadyChosen(answerSet)){
@@ -102,7 +101,7 @@ for (var i = 0; i < questions.length; i++) {
         valueText = constructAnswerValue(valueText, answerRandomSets[i]);
         answers[i][j].setAnswerText(aText);
         answers[i][j].setValue(valueText);
-|       console.log(aText);
+        console.log(aText);
         console.log(valueText);
     };
 };
