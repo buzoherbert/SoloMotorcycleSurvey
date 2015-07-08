@@ -88,16 +88,6 @@ function isItAlreadyChosen(set){
     return true;
 }
 
-function constructAnswerArray(answerTextArray, valuesArray){
-    var answers = [];
-    for (var i = 0; i < answerTextArray.length; i++) {
-        answers[i] = new fSON.answer();
-        answers[i].setAnswerText(answerTextArray[i]);
-        answers[i].setValue(valuesArray[i]);
-    };
-    return answers;
-}
-
 var chapter = fSUR.getChapters()[1];
 var questions = chapter.getQuestions();
 var answers = [];
