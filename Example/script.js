@@ -101,7 +101,5 @@ for (var i = 0; i < questions.length; i++) {
         valueText = constructAnswerValue(valueText, answerRandomSets[i]);
         answers[i][j].setAnswerText(aText);
         answers[i][j].setValue(valueText);
-        console.log(aText);
-        console.log(valueText);
     };
 };
