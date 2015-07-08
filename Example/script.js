@@ -88,23 +88,6 @@ var variables = {
     }
 };
 
-var chapter = fSUR.getChapters()[1];
-var questions = chapter.getQuestions();
-var answers = [];
-var answerRandomSets = [];
-for (var i = 0; i < questions.length; i++) {
-    var answerRandomSets[i] = getRandomSet();
-    var asnswers[i] = questions[i].getAnswers();
-    for (var j = 0; j < answers.length; j++) {
-        var aText = answers[i][j].getAnswerText();
-        atext = replaceText(aText, answerRandomSets[i]);
-        var valueText = answers[i][j].getValue();
-        valueText = constructAnswerValue(valueText, answerRandomSets[i]);
-        answers[i][j].setAnswerText(atext);
-        answers[i][j].setValue(valueText);
-    };
-};
-
 function replaceText(text, changesSet){
     for (var property in changesSet) {
         if (changesSet.hasOwnProperty(property)) {
@@ -118,16 +101,13 @@ function constructAnswerValue(text, valueSet){
     var randomValues = "";
     for (var property in valueSet) {
         if (valueSet.hasOwnProperty(property)) {
-            randomValues = property.concat("_", valueSet[property]);
+            var valueAndRandomSelection = property.concat("-", valueSet[property]);
+            randomValues.concat("_", valueAndRandomSelection);
         }
     }
-
-text = text.concat("_", valueAndRandomSelection);
-
+    text = randomValues.concat("-", text);
     return text;
 }
-
-
 
 function getRandomSet(){
     var answerSet;
@@ -167,11 +147,20 @@ function constructAnswerArray(answerTextArray, valuesArray){
     };
     return answers;
 }
-function getRandomNoRepeat(array, alreadyUsedRandomNumbers){
-    var r_index = Math.floor((Math.random() * array.length) + 0);
-    if(r_index.indexOf(alreadyUsedRandomNumbers)){
-        r_index = getRandomNoRepeat(array);
-    }
-    // After receiving r_index, add it to alreadyUsedRandomNumbers for it not to repeat.
-    return r_index;
-}
+
+var chapter = fSUR.getChapters()[1];
+var questions = chapter.getQuestions();
+var answers = [];
+var answerRandomSets = [];
+for (var i = 0; i < questions.length; i++) {
+    var answerRandomSets[i] = getRandomSet();
+    var asnswers[i] = questions[i].getAnswers();
+    for (var j = 0; j < answers.length; j++) {
+        var aText = answers[i][j].getAnswerText();
+        atext = replaceText(aText, answerRandomSets[i]);
+        var valueText = answers[i][j].getValue();
+        valueText = constructAnswerValue(valueText, answerRandomSets[i]);
+        answers[i][j].setAnswerText(atext);
+        answers[i][j].setValue(valueText);
+    };
+};
