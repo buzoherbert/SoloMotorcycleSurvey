@@ -90,16 +90,16 @@ function getRandomSet(){
 
 function isItAlreadyChosen(set){
     for (var i = 0; i < answerSets.length; i++) {
-        if(
-        ((answerSets[i].gasp == set.gasp) && (answerSets[i].ecash == set.ecash)
-        (answerSets[i].emont == set.emont) && (answerSets[i].efuel == set.efuel)
-        (answerSets[i].emaxi == set.emaxi) && (answerSets[i].echar == set.echar)) &&
-        (answerSets[i].espee == set.espee)
-        ){
-            return true
+        for (var property in set) {
+            if (set.hasOwnProperty(property)) {
+                if(!(set.property == answerSets[i].property)){
+                    break;
+                }
+            }
+            return true;
         }
     };
-    return false
+    return false;
 }
 
 function constructAnswerArray(answerTextArray, valuesArray){
