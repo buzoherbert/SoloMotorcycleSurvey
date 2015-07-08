@@ -1,3 +1,4 @@
+var fSUR = FTproject.getSurveyProject().getSurvey();
 var variables = {
     "gasp":
     {"name": "gasp",
@@ -30,7 +31,7 @@ var variables = {
 };
 
 function replaceText(text, changesSet){
-    for (var property in changesSet) {
+    for (property in changesSet) {
         if (changesSet.hasOwnProperty(property)) {
             text = text.replace(property, changesSet[property]);
         }
@@ -40,7 +41,7 @@ function replaceText(text, changesSet){
 
 function constructAnswerValue(text, valueSet){
     var randomValues = "";
-    for (var property in valueSet) {
+    for (property in valueSet) {
         if (valueSet.hasOwnProperty(property)) {
             var valueAndRandomSelection = property.concat("-", valueSet[property]);
             randomValues.concat("_", valueAndRandomSelection);
@@ -51,32 +52,38 @@ function constructAnswerValue(text, valueSet){
 }
 
 function getRandomSet(){
-    var answerSet;
-    for (var property in variables) {
+    var answerSet = {};
+    for (property in variables) {
         if (variables.hasOwnProperty(property)) {
             var options = variables[property]["options"];
-            var alength = Math.floor((Math.random() * options.length);
-            answerSet[variables[property]["name"]] = options[alength];
+            var alength = Math.floor(Math.random() * options.length);
+            var name = variables[property]["name"];
+            answerSet[name] = options[alength];
         }
     }
     if(isItAlreadyChosen(answerSet)){
         getRandomSet();
     }
-    return answerSet
+    return answerSet;
 }
 
 function isItAlreadyChosen(set){
-    for (var i = 0; i < answerSets.length; i++) {
-        for (var property in set) {
+    console.log(answerRandomSets.length);
+    if(answerRandomSets.length == 0){
+        return false;
+    }
+    for (var i = 0; i < answerRandomSets.length; i++) {
+        for (property in set) {
             if (set.hasOwnProperty(property)) {
-                if(!(set[property] == answerSets[i][property])){
+                console.log(set[property] + answerRandomSets[i][property]);
+                if(!(set[property] == answerRandomSets[i][property])){
                     break;
                 }
             }
         }
-        return true;
+        return false;
     };
-    return false;
+    return true;
 }
 
 function constructAnswerArray(answerTextArray, valuesArray){
@@ -94,9 +101,9 @@ var questions = chapter.getQuestions();
 var answers = [];
 var answerRandomSets = [];
 for (var i = 0; i < questions.length; i++) {
-    var answerRandomSets[i] = getRandomSet();
-    var asnswers[i] = questions[i].getAnswers();
-    for (var j = 0; j < answers.length; j++) {
+    answerRandomSets[i] = getRandomSet();
+    answers[i] = questions[i].getAnswers();
+    for (var j = 0; j < answers[i].length; j++) {
         var aText = answers[i][j].getAnswerText();
         atext = replaceText(aText, answerRandomSets[i]);
         var valueText = answers[i][j].getValue();
