@@ -37,17 +37,20 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle"
+                                                    "Text": "No Motorcycle",
+                                                    "Value": "NOM"
                                                 }
                                             }
                                         ]
@@ -63,17 +66,20 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle"
+                                                    "Text": "No Motorcycle",
+                                                    "Value": "NOM"
                                                 }
                                             }
                                         ]
@@ -89,17 +95,20 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle"
+                                                    "Text": "No Motorcycle",
+                                                    "Value": "NOM"
                                                 }
                                             }
                                         ]
@@ -115,17 +124,20 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle"
+                                                    "Text": "No Motorcycle",
+                                                    "Value": "NOM"
                                                 }
                                             }
                                         ]
@@ -141,17 +153,20 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         "
+                                                    "Text": "Conventional Motorcycle\\nCash down= 500,000 \\nMonthly payment (3 years)= 500,000 \\n Gas price (rupiah per liter)= var_gasp\\nand How long to charge (hours)= NA\\nMax speed (km per hour)=100 kph\n         ",
+                                                    "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee"
+                                                    "Text": "Electric Motorcycle\\nCash down= var_ecash\\nMONTHLY PAYMENT (for 3 years)= var_emont\\nFuel price (rupiah per liter equivalent)= var_efuel\\nMaximum range on single charge (km)= var_emaxi\\nHow long to charge (hours)= var_echar\\nMax speed (km per hour)= var_espee",
+                                                    "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle"
+                                                    "Text": "No Motorcycle",
+                                                    "Value": "NOM"
                                                 }
                                             }
                                         ]
