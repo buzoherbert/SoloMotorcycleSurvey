@@ -90,15 +90,18 @@ var variables = {
 
 var chapter = fSUR.getChapters()[1];
 var questions = chapter.getQuestions();
+var answers = [];
 var answerRandomSets = [];
 for (var i = 0; i < questions.length; i++) {
     var answerRandomSets[i] = getRandomSet();
-    var asnswers = questions[i].getAnswers();
+    var asnswers[i] = questions[i].getAnswers();
     for (var j = 0; j < answers.length; j++) {
-        var aText = answers[j].getAnswerText();
+        var aText = answers[i][j].getAnswerText();
         atext = replaceText(aText, answerRandomSets[i]);
-        answers[j].setAnswerText(atext);
-        var valueText
+        var valueText = answers[i][j].getValue();
+        valueText = constructAnswerValue(valueText, answerRandomSets[i]);
+        answers[i][j].setAnswerText(atext);
+        answers[i][j].setValue(valueText);
     };
 };
 
@@ -108,6 +111,19 @@ function replaceText(text, changesSet){
             text = text.replace(property, changesSet[property]);
         }
     }
+    return text;
+}
+
+function constructAnswerValue(text, valueSet){
+    var randomValues = "";
+    for (var property in valueSet) {
+        if (valueSet.hasOwnProperty(property)) {
+            randomValues = property.concat("_", valueSet[property]);
+        }
+    }
+
+text = text.concat("_", valueAndRandomSelection);
+
     return text;
 }
 
