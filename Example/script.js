@@ -25,7 +25,7 @@ var variables = {
     },
     "var_espee":
     {"upload_name": "espee",
-     "options": ["60kph", "70kph", "80kph", "90kph","210kph"]
+     "options": ["60kph", "70kph", "80kph", "90kph","100kph"]
     }
 };
 
@@ -54,7 +54,7 @@ function constructAnswerValue(text, valueSet){
     return text;
 }
 
-function getRandomSet(){
+function getRandomSet(answerRandomSets){
     var answerSet = {};
     for (property in variables) {
         if (variables.hasOwnProperty(property)) {
@@ -63,13 +63,13 @@ function getRandomSet(){
             answerSet[property] = options[alength];
         }
     }
-    if(isItAlreadyChosen(answerSet)){
+    if(isItAlreadyChosen(answerSet, answerRandomSets)){
         getRandomSet();
     }
     return answerSet;
 }
 
-function isItAlreadyChosen(set){
+function isItAlreadyChosen(set, answerRandomSets){
     if(answerRandomSets.length == 0){
         return false;
     }
@@ -86,19 +86,24 @@ function isItAlreadyChosen(set){
     return true;
 }
 
-var chapter = fSUR.getChapters()[1];
-var questions = chapter.getQuestions();
-var answers = [];
-var answerRandomSets = [];
-for (var i = 0; i < questions.length; i++) {
-    answerRandomSets[i] = getRandomSet();
-    answers[i] = questions[i].getAnswers();
-    for (var j = 0; j < answers[i].length; j++) {
-        var aText = answers[i][j].getAnswerText();
-        aText = replaceText(aText, answerRandomSets[i]);
-        var valueText = answers[i][j].getValue();
-        valueText = constructAnswerValue(valueText, answerRandomSets[i]);
-        answers[i][j].setAnswerText(aText);
-        answers[i][j].setValue(valueText);
+function changeChapter(index){
+    var chapter = fSUR.getChapters()[index];
+    var questions = chapter.getQuestions();
+    var answers = [];
+    var answerRandomSets = [];
+    for (var i = 0; i < questions.length; i++) {
+        answerRandomSets[i] = getRandomSet(answerRandomSets);
+        answers[i] = questions[i].getAnswers();
+        for (var j = 0; j < answers[i].length; j++) {
+            var aText = answers[i][j].getAnswerText();
+            aText = replaceText(aText, answerRandomSets[i]);
+            var valueText = answers[i][j].getValue();
+            valueText = constructAnswerValue(valueText, answerRandomSets[i]);
+            answers[i][j].setAnswerText(aText);
+            answers[i][j].setValue(valueText);
+        };
     };
 };
+
+changeChapter(2);
+changeChapter(5);
