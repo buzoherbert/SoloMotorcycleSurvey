@@ -6,8 +6,38 @@
             "Survey": {
                 "flockSONversion": 0.1,
                 "Title": "Survey",
-                "FlockScript": "var variables = {\n    \"var_gasp\":\n    {\"upload_name\": \"gasp\",\n     \"options\": [\"7,000\", \"8,000\", \"9,000\"]\n    },\n    \"var_ecash\":\n    {\"upload_name\": \"eemont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_emont\":\n    {\"upload_name\": \"emont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_efuel\":\n    {\"upload_name\": \"efuel\",\n     \"options\": [\"4,000\", \"5,000\", \"6,000\", \"7,000\",\"8,000\"]\n    },\n    \"var_emaxi\":\n    {\"upload_name\": \"emaxi\",\n     \"options\": [\"40km\", \"60km\", \"80km\", \"100km\"]\n    },\n    \"var_echar\":\n    {\"upload_name\": \"echar\",\n     \"options\": [\"2\", \"3\", \"4\", \"5\"]\n    },\n    \"var_espee\":\n    {\"upload_name\": \"espee\",\n     \"options\": [\"60kph\", \"70kph\", \"80kph\", \"90kph\",\"210kph\"]\n    }\n};\n\nfunction replaceText(text, changesSet){\n    for (property in changesSet) {\n        if (changesSet.hasOwnProperty(property)) {\n            text = text.replace(property, changesSet[property]);\n        }\n    }\n    return text;\n}\n\nfunction constructAnswerValue(text, valueSet){\n    var randomValues = \"\";\n    for (property in valueSet) {\n        if (valueSet.hasOwnProperty(property)) {\n            var valueAndRandomSelection = variables[property][\"upload_name\"].concat(\"-\", valueSet[property]);\n            if (randomValues == \"\"){\n                randomValues = valueAndRandomSelection;\n            } else {\n                randomValues = randomValues.concat(\"_\", valueAndRandomSelection);\n            }\n        }\n    }\n    text = randomValues.concat(\"_\", text);\n    return text;\n}\n\nfunction getRandomSet(){\n    var answerSet = {};\n    for (property in variables) {\n        if (variables.hasOwnProperty(property)) {\n            var options = variables[property][\"options\"];\n            var alength = Math.floor(Math.random() * options.length);\n            answerSet[property] = options[alength];\n        }\n    }\n    if(isItAlreadyChosen(answerSet)){\n        getRandomSet();\n    }\n    return answerSet;\n}\n\nfunction isItAlreadyChosen(set){\n    if(answerRandomSets.length == 0){\n        return false;\n    }\n    for (var i = 0; i < answerRandomSets.length; i++) {\n        for (property in set) {\n            if (set.hasOwnProperty(property)) {\n                if(!(set[property] == answerRandomSets[i][property])){\n                    break;\n                }\n            }\n        }\n        return false;\n    };\n    return true;\n}\n\nvar chapter = fSUR.getChapters()[1];\nvar questions = chapter.getQuestions();\nvar answers = [];\nvar answerRandomSets = [];\nfor (var i = 0; i < questions.length; i++) {\n    answerRandomSets[i] = getRandomSet();\n    answers[i] = questions[i].getAnswers();\n    for (var j = 0; j < answers[i].length; j++) {\n        var aText = answers[i][j].getAnswerText();\n        aText = replaceText(aText, answerRandomSets[i]);\n        var valueText = answers[i][j].getValue();\n        valueText = constructAnswerValue(valueText, answerRandomSets[i]);\n        answers[i][j].setAnswerText(aText);\n        answers[i][j].setValue(valueText);\n    };\n};",
+                "FlockScript": "var variables = {\n    \"var_gasp\":\n    {\"upload_name\": \"gasp\",\n     \"options\": [\"7,000\", \"8,000\", \"9,000\"]\n    },\n    \"var_ecash\":\n    {\"upload_name\": \"eemont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_emont\":\n    {\"upload_name\": \"emont\",\n     \"options\": [\"500,000\", \"750,000\", \"1,000,000\"]\n    },\n    \"var_efuel\":\n    {\"upload_name\": \"efuel\",\n     \"options\": [\"4,000\", \"5,000\", \"6,000\", \"7,000\",\"8,000\"]\n    },\n    \"var_emaxi\":\n    {\"upload_name\": \"emaxi\",\n     \"options\": [\"40km\", \"60km\", \"80km\", \"100km\"]\n    },\n    \"var_echar\":\n    {\"upload_name\": \"echar\",\n     \"options\": [\"2\", \"3\", \"4\", \"5\"]\n    },\n    \"var_espee\":\n    {\"upload_name\": \"espee\",\n     \"options\": [\"60kph\", \"70kph\", \"80kph\", \"90kph\",\"100kph\"]\n    }\n};\n\nfunction replaceText(text, changesSet){\n    for (property in changesSet) {\n        if (changesSet.hasOwnProperty(property)) {\n            text = text.replace(property, changesSet[property]);\n        }\n    }\n    return text;\n}\n\nfunction constructAnswerValue(text, valueSet){\n    var randomValues = \"\";\n    for (property in valueSet) {\n        if (valueSet.hasOwnProperty(property)) {\n            var valueAndRandomSelection = variables[property][\"upload_name\"].concat(\"-\", valueSet[property]);\n            if (randomValues == \"\"){\n                randomValues = valueAndRandomSelection;\n            } else {\n                randomValues = randomValues.concat(\"_\", valueAndRandomSelection);\n            }\n        }\n    }\n    text = randomValues.concat(\"_\", text);\n    return text;\n}\n\nfunction getRandomSet(){\n    var answerSet = {};\n    for (property in variables) {\n        if (variables.hasOwnProperty(property)) {\n            var options = variables[property][\"options\"];\n            var alength = Math.floor(Math.random() * options.length);\n            answerSet[property] = options[alength];\n        }\n    }\n    if(isItAlreadyChosen(answerSet)){\n        getRandomSet();\n    }\n    return answerSet;\n}\n\nfunction isItAlreadyChosen(set){\n    if(answerRandomSets.length == 0){\n        return false;\n    }\n    for (var i = 0; i < answerRandomSets.length; i++) {\n        for (property in set) {\n            if (set.hasOwnProperty(property)) {\n                if(!(set[property] == answerRandomSets[i][property])){\n                    break;\n                }\n            }\n        }\n        return false;\n    };\n    return true;\n}\n\nvar chapter = fSUR.getChapters()[1];\nvar questions = chapter.getQuestions();\nvar answers = [];\nvar answerRandomSets = [];\nfor (var i = 0; i < questions.length; i++) {\n    answerRandomSets[i] = getRandomSet();\n    answers[i] = questions[i].getAnswers();\n    for (var j = 0; j < answers[i].length; j++) {\n        var aText = answers[i][j].getAnswerText();\n        aText = replaceText(aText, answerRandomSets[i]);\n        var valueText = answers[i][j].getValue();\n        valueText = constructAnswerValue(valueText, answerRandomSets[i]);\n        answers[i][j].setAnswerText(aText);\n        answers[i][j].setValue(valueText);\n    };\n};",
                 "Chapters": [
+                {
+                        "Chapter": {
+                            "Title": "Language",
+                            "Questions": [
+                                {
+                                    "Question": {
+                                        "Kind": "MC",
+                                        "ID": "lang",
+                                        "Text": "Choose the language of the survey",
+                                        "JumpID": null,
+                                    "Other": false,
+                                        "Answers": [
+                                            {
+                                                "Answer": {
+                                                    "Text": "ENGLISH",
+                                                    "JumpID": "description_eng"
+                                                }
+                                                },
+                                            {
+                                                "Answer": {
+                                                    "Text": "BAHASA",
+                                                    "JumpID": "description_bahasa"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },  
                     {
                         "Chapter": {
                             "Title": "Project",
@@ -15,14 +45,14 @@
                                 {
                                     "Question": {
                                         "Kind": "OT",
-                                        "ID": "description",
+                                        "ID": "description_eng",
                                         "Text": "Imagine that it is a couple years in the future....",
                                         "JumpID": null
                                     }
                                 }
                             ]
                         }
-                    },
+                    },  
                     {
                         "Chapter": {
                             "Title": "Moto survey",
@@ -37,19 +67,19 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
+                                                    "Text": "CONVENTIONAL MOTORCYCLE\nCash down= 500,000\nMonthly payment (for 3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
-                                            },
+                                                },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
+                                                    "Text": "ELECTRIC MOTORCYCLE\nCash down= var_ecash\nMonthly Payment (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle",
+                                                    "Text": "NO MOTORCYCLE",
                                                     "Value": "NOM"
                                                 }
                                             }
@@ -66,19 +96,19 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
+                                                    "Text": "CONVENTIONAL MOTORCYCLE\nCash down= 500,000\nMonthly payment (for 3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
+                                                    "Text": "ELECTRIC MOTORCYCLE\nCash down= var_ecash\nMonthly Payment (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle",
+                                                    "Text": "NO MOTORCYCLE",
                                                     "Value": "NOM"
                                                 }
                                             }
@@ -95,19 +125,19 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
+                                                    "Text": "CONVENTIONAL MOTORCYCLE\nCash down= 500,000\nMonthly payment (for 3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
+                                                    "Text": "ELECTRIC MOTORCYCLE\nCash down= var_ecash\nMonthly Payment (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle",
+                                                    "Text": "NO MOTORCYCLE",
                                                     "Value": "NOM"
                                                 }
                                             }
@@ -124,19 +154,19 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
+                                                    "Text": "CONVENTIONAL MOTORCYCLE\nCash down= 500,000\nMonthly payment (for 3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
+                                                    "Text": "ELECTRIC MOTORCYCLE\nCash down= var_ecash\nMonthly Payment (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle",
+                                                    "Text": "NO MOTORCYCLE",
                                                     "Value": "NOM"
                                                 }
                                             }
@@ -153,19 +183,19 @@
                                         "Answers": [
                                             {
                                                 "Answer": {
-                                                    "Text": "Conventional Motorcycle\nCash down= 500,000\nMonthly payment (3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
+                                                    "Text": "CONVENTIONAL MOTORCYCLE\nCash down= 500,000\nMonthly payment (for 3 years)= 500,000\nGas price (rupiah per liter)= var_gasp\nHow long to charge (hours)= NA\nMax speed (km per hour)=100 kph",
                                                     "Value": "GAS"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "Electric Motorcycle\nCash down= var_ecash\nMONTHLY PAYMENT (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
+                                                    "Text": "ELECTRIC MOTORCYCLE\nCash down= var_ecash\nMonthly Payment (for 3 years)= var_emont\nFuel price (rupiah per liter equivalent)= var_efuel\nMaximum range on single charge (km)= var_emaxi\nHow long to charge (hours)= var_echar\nMax speed (km per hour)= var_espee",
                                                     "Value": "ELE"
                                                 }
                                             },
                                             {
                                                 "Answer": {
-                                                    "Text": "No Motorcycle",
+                                                    "Text": "NO MOTORCYCLE",
                                                     "Value": "NOM"
                                                 }
                                             }
@@ -212,7 +242,7 @@
                                     "Question": {
                                         "Kind": "MC",
                                         "ID": "q2",
-                                        "Text": "Household income",
+                                        "Text": "Household income per month",
                                         "JumpID": null,
                                         "Other": false,
                                         "Answers": [
@@ -246,10 +276,64 @@
                                 },
                                 {
                                     "Question": {
-                                        "Kind": "OT",
+                                        "Kind": "MC",
                                         "ID": "q3",
                                         "Text": "Home Kelurahan",
-                                        "JumpID": null
+                                        "JumpID": null,
+                                        "Other": true,
+                                        "Answers": [
+                                        {"Answer":{"Text":"BALUWARTI"}},
+{"Answer":{"Text":"BANYUANYAR"}},
+{"Answer":{"Text":"BUMI"}},
+{"Answer":{"Text":"DANUKUSUMAN"}},
+{"Answer":{"Text":"GAJAHAN"}},
+{"Answer":{"Text":"GANDEKAN"}},
+{"Answer":{"Text":"GILINGAN"}},
+{"Answer":{"Text":"JAGALAN"}},
+{"Answer":{"Text":"JAJAR"}},
+{"Answer":{"Text":"JAYENGAN"}},
+{"Answer":{"Text":"JEBRES"}},
+{"Answer":{"Text":"JOYOSURAN"}},
+{"Answer":{"Text":"JOYOTAKAN"}},
+{"Answer":{"Text":"KADIPIRO"}},
+{"Answer":{"Text":"KAMPUNG BARU"}},
+{"Answer":{"Text":"KARANGASEM"}},
+{"Answer":{"Text":"KAUMAN"}},
+{"Answer":{"Text":"KEDUNG LUMBU"}},
+{"Answer":{"Text":"KEMLAYAN"}},
+{"Answer":{"Text":"KEPATIHAN KULON"}},
+{"Answer":{"Text":"KEPATIHAN WETAN"}},
+{"Answer":{"Text":"KEPRABON"}},
+{"Answer":{"Text":"KERTEN"}},
+{"Answer":{"Text":"KESTALAN"}},
+{"Answer":{"Text":"KETELAN"}},
+{"Answer":{"Text":"KRATONAN"}},
+{"Answer":{"Text":"LAWEYAN"}},
+{"Answer":{"Text":"MANAHAN"}},
+{"Answer":{"Text":"MANGKUBUMEN"}},
+{"Answer":{"Text":"MOJOSONGO"}},
+{"Answer":{"Text":"NUSUKAN"}},
+{"Answer":{"Text":"PAJANG"}},
+{"Answer":{"Text":"PASAR KLIWON"}},
+{"Answer":{"Text":"PENULARAN"}},
+{"Answer":{"Text":"PENUMPING"}},
+{"Answer":{"Text":"PUCANG SAWIT"}},
+{"Answer":{"Text":"PUNGGAWAN"}},
+{"Answer":{"Text":"PURWODININGRATAN"}},
+{"Answer":{"Text":"PURWOSARI"}},
+{"Answer":{"Text":"SANGKRAH"}},
+{"Answer":{"Text":"SEMANGGI"}},
+{"Answer":{"Text":"SERENGAN"}},
+{"Answer":{"Text":"SETABELAN"}},
+{"Answer":{"Text":"SEWU"}},
+{"Answer":{"Text":"SONDAKAN"}},
+{"Answer":{"Text":"SRIWEDARI"}},
+{"Answer":{"Text":"SUDIROPRAJAN"}},
+{"Answer":{"Text":"SUMBER"}},
+{"Answer":{"Text":"TEGALHARJO"}},
+{"Answer":{"Text":"TIMURAN"}},
+{"Answer":{"Text":"TIPES"}}]
+
                                     }
                                 },
                                 {
@@ -316,7 +400,7 @@
                                 },
                                 {
                                     "Question": {
-                                        "Kind": "MC",
+                                        "Kind": "CB",
                                         "ID": "q6",
                                         "Text": "Other ways you get around the city?",
                                         "JumpID": null,
@@ -462,7 +546,7 @@
                                         "Kind": "MC",
                                         "ID": "q12",
                                         "Text": "Do you think electric motorcycles are good quality?",
-                                        "JumpID": null,
+                                        "JumpID": "end",
                                         "Other": false,
                                         "Answers": [
                                             {
@@ -485,8 +569,773 @@
                                 }
                             ]
                         }
+                    },
+
+                    {
+        "Chapter": {
+            "Title": "Proyek",
+            "Questions": [
+                {
+                    "Question": {
+                        "Kind": "OT",
+                        "ID": "description_bahasa",
+                        "Text": "Bayangkan pada beberapa tahun yang akan datang anda berpikir unuk membeli sepeda motor baru. Jika sekarang anda memiliki sebuah sepeda motor, bayangkan itu sudah tidak berfungsi. Pada layar selanjutnya anda akan ditunjukkan informasi tentang perbandingan kinerja dan harga sepeda motor bensin dan sepeda motor listrik. Harga BBM dan listrik bisa jadi lebih mahal atau lebih murah dibandingkan saat ini. Sepeda motor listrik diisi ulang (charge) di rumah, tempat kerja, atau tempat parker. Untuk setiap alternative, anda bisa memilih sepeda motor bensin, sepeda motor listrik, atau tidak sepeda motor. Jika anda ada pertanyaan silakan tanya pewawancara.",
+                        "JumpID": null
                     }
+                }
+            ]
+        }
+    },
+
+    {
+        "Chapter": {
+            "Title": "Survey sepeda motor",
+            "Questions": [
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "MOTORCYCLE_OPTION1b",
+                        "Text": "Pilih diantara dua pilihan sepeda motor berikut ini",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR BENSIN\nBayar Kontan= 500,000\nPembayaran kredit bulanan (3 tahun)= 500,000\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_gasp\nDurasi isi ulang (jam)= NA\nKecepatan Maksimum (km per jam)=100 kph",
+                                    "Value": "GAS"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SPEPEDA MOTOR LISTRIK\nBayar Kontan= var_ecash\nPembayaran kredit bulanan (3 tahun)= var_emont\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_efuel\nMaksimum jarak tempuh dalam sekali isi ulang (charging) (km)= var_emaxi\nDurasi isi ulang (jam)= var_echar\nKecepatan Maksimum (km per jam)= var_espee",
+                                    "Value": "ELE"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUKAN SEPEDA MOTOR",
+                                    "Value": "NOM"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "MOTORCYCLE_OPTION2b",
+                        "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR BENSIN\nBayar Kontan = 500,000\nPembayaran kredit bulanan (3 tahun)= 500,000\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_gasp\nDurasi isi ulang (jam)= NA\nKecepatan Maksimum (km per jam)=100 kph",
+                                    "Value": "GAS"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR LISTRIK\nBayar Kontan= var_ecash\nPembayaran kredit bulanan (3 tahun)= var_emont\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_efuel\nMaksimum jarak tempuh dalam sekali isi ulang (charging) (km)= var_emaxi\nDurasi isi ulang (jam)= var_echar\nKecepatan Maksimum (km per jam)= var_espee",
+                                    "Value": "ELE"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUKAN SEPEDA MOTOR",
+                                    "Value": "NOM"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "MOTORCYCLE_OPTION3b",
+                        "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR BENSIN\nBayar Kontan = 500,000\nPembayaran kredit bulanan (3 tahun)= 500,000\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_gasp\nDurasi isi ulang (jam)= NA\nKecepatan Maksimum (km per jam)=100 kph",
+                                    "Value": "GAS"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR LISTRIK\nBayar Kontan= var_ecash\nPembayaran kredit bulanan (3 tahun)= var_emont\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_efuel\nMaksimum jarak tempuh dalam sekali isi ulang (charging) (km)= var_emaxi\nDurasi isi ulang (jam)= var_echar\nKecepatan Maksimum (km per jam)= var_espee",
+                                    "Value": "ELE"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUKAN SEPEDA MOTOR",
+                                    "Value": "NOM"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "MOTORCYCLE_OPTION4b",
+                        "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR BENSIN\nBayar Kontan = 500,000\nPembayaran kredit bulanan (3 tahun)= 500,000\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_gasp\nDurasi isi ulang (jam)= NA\nKecepatan Maksimum (km per jam)=100 kph",
+                                    "Value": "GAS"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR LISTRIK\nBayar Kontan= var_ecash\nPembayaran kredit bulanan (3 tahun)= var_emont\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_efuel\nMaksimum jarak tempuh dalam sekali isi ulang (charging) (km)= var_emaxi\nDurasi isi ulang (jam)= var_echar\nKecepatan Maksimum (km per jam)= var_espee",
+                                    "Value": "ELE"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUKAN SEPEDA MOTOR",
+                                    "Value": "NOM"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "MOTORCYCLE_OPTION5b",
+                        "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR BENSIN\nBayar Kontan = 500,000\nPembayaran kredit bulanan (3 tahun)= 500,000\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_gasp\nDurasi isi ulang (jam)= NA\nKecepatan Maksimum (km per jam)=100 kph",
+                                    "Value": "GAS"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEPEDA MOTOR LISTRIK\nBayar Kontan= var_ecash\nPembayaran kredit bulanan (3 tahun)= var_emont\nHarga bahan bakar (per liter atau setara itu dalam listrik)= var_efuel\nMaksimum jarak tempuh dalam sekali isi ulang (charging) (km)= var_emaxi\nDurasi isi ulang (jam)= var_echar\nKecepatan Maksimum (km per jam)= var_espee",
+                                    "Value": "ELE"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUKAN SEPEDA MOTOR",
+                                    "Value": "NOM"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Chapter": {
+            "Title": "Survey kependudukan",
+            "Questions": [
+                {
+                    "Question": {
+                        "Kind": "ON",
+                        "ID": "q0",
+                        "Text": "Umur",
+                        "JumpID": null
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q1b",
+                        "Text": "Jenis kelamin",
+                        "JumpID": null,
+
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Laki-laki"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Perempuan"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q2b",
+                        "Text": " Pendapatan Rumah Tangga per bulan",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "0 - 1000"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "1001 - 5000"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "5001 - 15000"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "15000 - 50000"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "+ 50000"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q3b",
+                        "Text": "Asal Kelurahan",
+                        "JumpID": null,
+                        "Other": true,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "BALUWARTI"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BANYUANYAR"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "BUMI"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "DANUKUSUMAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "GAJAHAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "GANDEKAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "GILINGAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JAGALAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JAJAR"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JAYENGAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JEBRES"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JOYOSURAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "JOYOTAKAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KADIPIRO"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KAMPUNG BARU"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KARANGASEM"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KAUMAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KEDUNG LUMBU"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KEMLAYAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KEPATIHAN KULON"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KEPATIHAN WETAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KEPRABON"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KERTEN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KESTALAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KETELAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "KRATONAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "LAWEYAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "MANAHAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "MANGKUBUMEN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "MOJOSONGO"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "NUSUKAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PAJANG"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PASAR KLIWON"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PENULARAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PENUMPING"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PUCANG SAWIT"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PUNGGAWAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PURWODININGRATAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "PURWOSARI"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SANGKRAH"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEMANGGI"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SERENGAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SETABELAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SEWU"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SONDAKAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SRIWEDARI"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SUDIROPRAJAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "SUMBER"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "TEGALHARJO"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "TIMURAN"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "TIPES"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q4b",
+                        "Text": " Apakah anda punya telepon genggam?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Ya (smartphone)"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Ya (bukan smartphone)"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tadak punya"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q5b",
+                        "Text": "Bagaimana anda biasanya bepergian di kota?",
+                        "JumpID": null,
+                        "Other": true,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Motor"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "mobil"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "angkot atau bus"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "jalan kaki"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "bersepeda"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "CB",
+                        "ID": "q6b",
+                        "Text": "Adakah cara lain anda bepergian?",
+                        "JumpID": null,
+                        "Other": true,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "motor"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "mobil"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "angkot atau bus"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "jalan kaki"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "bersepeda"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q7b",
+                        "Text": "Apakah anda memiliki sepeda motor?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Ya"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tidak"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "ON",
+                        "ID": "q8b",
+                        "Text": "Berapa jumlah motor yang keluarga anda punyai?",
+                        "JumpID": null
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q9b",
+                        "Text": "Seberapa khawatir anda terhadap kualitas lingkungan?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Sangat khawatir"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "kadang-kadang"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "sedikit "
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "hampir tidak sama sekali"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q10b",
+                        "Text": "Apakah anda perokok?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Ya"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tidak"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Kadang-kadang"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q11b",
+                        "Text": "Apakah Anda pernah mengendarai sepeda motor listrik?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Ya"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tidak"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Question": {
+                        "Kind": "MC",
+                        "ID": "q12b",
+                        "Text": "Menurut Anda apakah sepeda motor listrik berkualitas baik?",
+                        "JumpID": null,
+                        "Other": false,
+                        "Answers": [
+                            {
+                                "Answer": {
+                                    "Text": "Ya"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tidak"
+                                }
+                            },
+                            {
+                                "Answer": {
+                                    "Text": "Tidak tau (tidak punya pendapat)"
+                                }
+                            }
+                        ]
+                    }
+                },
+                                {
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "end",
+                                        "Text": "Send the survey",
+                                        "JumpID": null
+                                    }
+                                }
+
+
+
+      
+                            
+                        ]
+                    }
+                }
+                
+
+
+
+
+
+
+
+
                 ]
+
+
+
+
             }
         },
         "CountersProject": null,
