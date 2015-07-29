@@ -796,7 +796,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION1b",
+                                        "ID": "MOTORCYCLE_OPTION1",
                                         "Text": "Pilih diantara dua pilihan sepeda motor berikut ini",
                                         "JumpID": null,
                                         "Other": false,
@@ -825,7 +825,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION2b",
+                                        "ID": "MOTORCYCLE_OPTION2",
                                         "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
                                         "JumpID": null,
                                         "Other": false,
@@ -854,7 +854,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION3b",
+                                        "ID": "MOTORCYCLE_OPTION3",
                                         "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
                                         "JumpID": null,
                                         "Other": false,
@@ -883,7 +883,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION4b",
+                                        "ID": "MOTORCYCLE_OPTION4",
                                         "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
                                         "JumpID": null,
                                         "Other": false,
@@ -912,7 +912,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "MOTORCYCLE_OPTION5b",
+                                        "ID": "MOTORCYCLE_OPTION5",
                                         "Text": " Pilih diantara dua pilihan sepeda motor berikut ini",
                                         "JumpID": null,
                                         "Other": false,
@@ -956,7 +956,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q1b",
+                                        "ID": "q1",
                                         "Text": "Jenis kelamin",
                                         "JumpID": null,
                                         "Other": false,
@@ -977,7 +977,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q2b",
+                                        "ID": "q2",
                                         "Text": " Pendapatan Rumah Tangga per bulan",
                                         "JumpID": null,
                                         "Other": false,
@@ -1013,7 +1013,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q3b",
+                                        "ID": "q3",
                                         "Text": "Asal Kelurahan",
                                         "JumpID": null,
                                         "Other": true,
@@ -1279,7 +1279,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q4b",
+                                        "ID": "q4",
                                         "Text": " Apakah anda punya telepon genggam?",
                                         "JumpID": null,
                                         "Other": false,
@@ -1305,7 +1305,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q5b",
+                                        "ID": "q5",
                                         "Text": "Bagaimana anda biasanya bepergian di kota?",
                                         "JumpID": null,
                                         "Other": true,
@@ -1341,7 +1341,7 @@
                                 {
                                     "Question": {
                                         "Kind": "CB",
-                                        "ID": "q6b",
+                                        "ID": "q6",
                                         "Text": "Adakah cara lain anda bepergian?",
                                         "JumpID": null,
                                         "Other": true,
@@ -1377,7 +1377,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q7b",
+                                        "ID": "q7",
                                         "Text": "Apakah anda memiliki sepeda motor?",
                                         "JumpID": null,
                                         "Other": false,
@@ -1398,7 +1398,7 @@
                                 {
                                     "Question": {
                                         "Kind": "ON",
-                                        "ID": "q8b",
+                                        "ID": "q8",
                                         "Text": "Berapa jumlah motor yang keluarga anda punyai?",
                                         "JumpID": null
                                     }
@@ -1406,7 +1406,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q9b",
+                                        "ID": "q9",
                                         "Text": "Seberapa khawatir anda terhadap kualitas lingkungan?",
                                         "JumpID": null,
                                         "Other": false,
@@ -1437,7 +1437,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q10b",
+                                        "ID": "q10",
                                         "Text": "Apakah anda perokok?",
                                         "JumpID": null,
                                         "Other": false,
@@ -1463,7 +1463,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q11b",
+                                        "ID": "q11",
                                         "Text": "Apakah Anda pernah mengendarai sepeda motor listrik?",
                                         "JumpID": null,
                                         "Other": false,
@@ -1484,7 +1484,7 @@
                                 {
                                     "Question": {
                                         "Kind": "MC",
-                                        "ID": "q12b",
+                                        "ID": "q12",
                                         "Text": "Menurut Anda apakah sepeda motor listrik berkualitas baik?",
                                         "JumpID": null,
                                         "Other": false,
