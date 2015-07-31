@@ -46,10 +46,27 @@
                                     "Question": {
                                         "Kind": "OT",
                                         "ID": "description_eng",
-                                        "Text": "Imagine that it is a couple years in the future....",
+                                        "Text": "Imagine that it is a couple years in the future and you are considering purchasing a new motorcycle. If you currently own a motorcycle, imagine that it no longer works.",
+                                        "JumpID": null
+                                    }
+                                },
+  {
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "description_eng2",
+                                        "Text": "On the next screens you will be shown information about the performance and price of a conventional gas-powered motorcycle and a similar performance electric motorcycle. Fuel and electricity prices may be higher or lower than in the present.",
+                                        "JumpID": null
+                                    }
+                                },
+{
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "description_eng3",
+                                        "Text": "The electric motorcycles are charged at home, work, or parking facilities. For each alternative, you have the option to choose the gas-powered motorcycle, the electric powered one, or no motorcycle. If you have any questions, please ask the person conducting the interview.",
                                         "JumpID": null
                                     }
                                 }
+ 
                             ]
                         }
                     },
@@ -782,10 +799,25 @@
                                     "Question": {
                                         "Kind": "OT",
                                         "ID": "description_bahasa",
-                                        "Text": "Bayangkan pada beberapa...",
+                                        "Text": "Bayangkan pada beberapa tahun yang akan datang anda berpikir unuk membeli sepeda motor baru. Jika sekarang anda memiliki sebuah sepeda motor, bayangkan itu sudah tidak berfungsi.",
                                         "JumpID": null
-                                    }
-                                }
+                                    }},
+{
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "description_bahasa2",
+                                        "Text": "Pada layar selanjutnya anda akan ditunjukkan informasi tentang perbandingan kinerja dan harga sepeda motor bensin dan sepeda motor listrik. Harga BBM dan listrik bisa jadi lebih mahal atau lebih murah dibandingkan saat ini.",
+                                        "JumpID": null
+                                    }},
+{
+                                    "Question": {
+                                        "Kind": "OT",
+                                        "ID": "description_bahasa3",
+                                        "Text": "Sepeda motor listrik diisi ulang (charge) di rumah, tempat kerja, atau tempat parker. Untuk setiap alternative, anda bisa memilih sepeda motor bensin, sepeda motor listrik, atau tidak sepeda motor. Jika anda ada pertanyaan silakan tanya pewawancara.",
+                                        "JumpID": null
+                                    }}
+ 
+
                             ]
                         }
                     },
